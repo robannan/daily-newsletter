@@ -1,0 +1,17 @@
+[
+  {"name":"Globe — Canada","url":"https://www.theglobeandmail.com/arc/outboundfeeds/rss/category/canada/"},
+  {"name":"Globe — World","url":"https://www.theglobeandmail.com/arc/outboundfeeds/rss/category/world/"},
+  {"name":"Globe — Opinion","url":"https://www.theglobeandmail.com/arc/outboundfeeds/rss/category/opinion/"},
+  {"name":"Globe — Politics","url":"https://www.theglobeandmail.com/arc/outboundfeeds/rss/category/politics/"},
+  {"name":"Globe — Sports","url":"https://www.theglobeandmail.com/arc/outboundfeeds/rss/category/sports/"},
+  {"name":"BBC (US)","url":"https://feeds.bbci.co.uk/news/rss.xml?edition=us"},
+  {"name":"NYT — Home","url":"https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"},
+  {"name":"NYT — Canada","url":"https://rss.nytimes.com/services/xml/rss/nyt/Canada.xml"},
+  {"name":"NYT — Book Review","url":"https://rss.nytimes.com/services/xml/rss/nyt/Books/Review.xml"},
+  {"name":"CBC — Top Stories","url":"https://www.cbc.ca/webfeed/rss/rss-topstories"},
+  {"name":"CBC — World","url":"https://www.cbc.ca/webfeed/rss/rss-world"},
+  {"name":"CBC — Politics","url":"https://www.cbc.ca/webfeed/rss/rss-politics"},
+  {"name":"CBC — Business","url":"https://www.cbc.ca/webfeed/rss/rss-business"},
+  {"name":"CBC — Sports","url":"https://www.cbc.ca/webfeed/rss/rss-sports"},
+  {"name":"CBC — Ottawa","url":"https://www.cbc.ca/webfeed/rss/rss-canada-ottawa"}
+]
