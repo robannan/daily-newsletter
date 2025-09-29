@@ -10,6 +10,11 @@ import feedparser
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
+# Tell sites we are a browser, to prevent CBC/Globe/NYT from dropping the connection
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (compatible; MyNewsBot/1.0; +https://github.com/YOUR_GITHUB_USERNAME)"
+}
+
 # ---------- CONFIG ----------
 FEEDS_FILE = "feeds.json"
 SENT_FILE = "sent_articles.json"
@@ -39,7 +44,7 @@ def fetch_new_articles(feeds, sent_set):
         url = f.get("url")
         name = f.get("name") or url
         logging.info("Fetching %s", url)
-        parsed = feedparser.parse(url)
+        parsed = feedparser.parse(url, request_headers=HEADERS)
         entries = parsed.entries[:MAX_PER_FEED]
         for e in entries:
             link = e.get("link")
