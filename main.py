@@ -39,30 +39,31 @@ def save_json(path, data):
         json.dump(data, fh, indent=2, ensure_ascii=False)
 
 def fetch_new_articles(feeds, sent_set):
-    new = []
-    for f in feeds:
-        url = f.get("url")
-        name = f.get("name") or url
-        logging.info("Fetching %s", url)
-        parsed = feedparser.parse(url, request_headers=HEADERS)
-        entries = parsed.entries[:MAX_PER_FEED]
-        for e in entries:
-            link = e.get("link")
-            if not link:
+    articles = []
+    for url in feeds:
+        try:
+            logging.info(f"Fetching {url}")
+            parsed = feedparser.parse(url, request_headers=HEADERS)
+
+            if parsed.bozo and not parsed.entries:
+                logging.warning(f"Problem parsing feed: {url}")
                 continue
-            if link in sent_set:
-                continue
-            title = e.get("title", "No title")
-            summary = e.get("summary", "") or e.get("description", "")
-            published = e.get("published", "")
-            new.append({
-                "feed": name,
-                "title": title,
-                "link": link,
-                "summary": summary,
-                "published": published
-            })
-    return new
+
+            for entry in parsed.entries[:5]:  # limit per feed
+                link = entry.link
+                if link not in sent_set:
+                    articles.append({
+                        "title": entry.title,
+                        "link": link,
+                        "source": parsed.feed.get("title", url),
+                    })
+
+        except Exception as e:
+            logging.error(f"Failed to fetch {url}: {e}")
+            continue  # skip this feed and move on
+
+    return articles
+
 
 def build_html(articles):
     if not articles:
